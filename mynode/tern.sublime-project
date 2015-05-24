@@ -1,0 +1,33 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "."
+		}
+	],
+  "ternjs": {
+      "exclude": ["wordpress/**", "node_modules/**"],
+      "libs": ["browser", "jquery"],
+              "plugins": {
+            "requirejs": {
+                "baseURL": "./js"
+           }
+      }
+
+  },
+  "libs": [
+    "ecma5",
+    "browser",
+    "jquery"
+  ],
+  "loadEagerly": [
+    "importantfile.js"
+  ],
+  "plugins": {
+    "requirejs": {
+      "baseURL": "./",
+      "paths": {}
+    }
+  }
+}

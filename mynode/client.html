@@ -1,0 +1,16 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script type="text/javascript">
+	var who = "ryan";
+	function cb(o) {
+//		alert(o.name + ' : ' + o.description);
+		document.getElementsByTagName("html")[0].appendChild(o.name + ' : ' + o.description);
+	}
+	var s = document.createElement('script');
+	//http://mynode-130750.apne1.nitrousbox.com:8080/?callback=cb&who=ryan
+	s.src = 'http://mynode-130750.apne1.nitrousbox.com:8080/?callback=cb&who=' + who;
+	document.getElementsByTagName("head")[0].appendChild(s);
+	</script>
+</head>
+</html>

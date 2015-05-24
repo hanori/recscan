@@ -1,0 +1,335 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"log",
+				"console.log"
+			],
+			[
+				"con",
+				"console.log"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "untitled.sublime-project",
+			"settings":
+			{
+				"buffer_size": 254,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 258.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Add Repository"
+			],
+			[
+				"Package Control: pa",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"install package",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove pa",
+				"Package Control: Remove Package"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"nod",
+				"Nodejs::Default File Settings"
+			],
+			[
+				"node",
+				"Nodejs::User File Settings"
+			],
+			[
+				"mi",
+				"View: Toggle Minimap"
+			],
+			[
+				"mini",
+				"View: Toggle Minimap"
+			],
+			[
+				"Package Control: install	",
+				"Package Control: Install Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"TE",
+				"TernJS: Reload"
+			],
+			[
+				"Ter",
+				"TernJS: Reload"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 384.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"package",
+			"help",
+			"pwd",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/hanori/Library/Application Support/Sublime Text 3/Packages/User/test.html",
+		"/Users/hanori/Nitrous/mynode/phantom-sample.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/request/node_modules/form-data/node_modules/combined-stream/test/integration/test-callback-streams.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/request/node_modules/form-data/node_modules/combined-stream/test/integration/test-is-stream-like.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/cssstyle/lib/properties/webkitMarginStart.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/htmlparser2/test/Events/11-script_in_script.json",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/request/index.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/cssstyle/lib/properties/pageBreakAfter.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/lib/scraper.js",
+		"/Users/hanori/Library/Application Support/Sublime Text 3/Packages/Nodejs/Nodejs.sublime-settings",
+		"/Users/hanori/Library/Application Support/Sublime Text 3/Packages/User/Nodejs.sublime-settings",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/cssstyle/lib/properties/stopColor.js",
+		"/Users/hanori/Nitrous/mynode/server.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/cssstyle/lib/properties/fontVariant.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/cssstyle/lib/properties/verticalAlign.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/request/node_modules/http-signature/lib/verify.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/lib/jsdom/browser/history.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/cssstyle/lib/properties/height.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/htmlparser2/node_modules/domutils/lib/helpers.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/cssstyle/lib/properties/webkitHyphenateLimitLines.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/htmlparser2/test/Events/06-leading-lt.json",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/request/CHANGELOG.md",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/request/lib/cookies.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/contextify/build/config.gypi",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/xmlhttprequest/tests/test-constants.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/htmlparser2/node_modules/domhandler/test/cases/21-conditional_comments.json",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/request/node_modules/form-data/node_modules/combined-stream/node_modules/delayed-stream/License",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/htmlparser2/lib/ProxyHandler.js",
+		"/Users/hanori/Nitrous/mynode/.unison/ar4d02c7f315928908b62d9d8a4da70d3f",
+		"/Users/hanori/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/hanori/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/hanori/projects/prototype/Pods/RATreeView/RATreeView/RATreeView+Enums.h",
+		"/Users/hanori/Library/Application Support/Sublime Text 3/Packages/CSScheme/README.md",
+		"/Users/hanori/Library/Application Support/Sublime Text 3/Packages/User/Plain text.sublime-settings",
+		"/Users/hanori/Library/Application Support/Sublime Text 3/Packages/CSScheme/Package/CSScheme.sublime-settings"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			">\n",
+			"1",
+			"javascpirt"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "untitled.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 254,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								254,
+								254
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "untitled.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"scraper",
+				"node_modules/scraper/lib/scraper.js"
+			],
+			[
+				"pha",
+				"phantom-sample.js"
+			],
+			[
+				"",
+				".unison/ar4d02c7f315928908b62d9d8a4da70d3f"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

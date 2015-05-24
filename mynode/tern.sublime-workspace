@@ -1,0 +1,743 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"urlu",
+				"urlutil	(?)"
+			],
+			[
+				"p",
+				"proflile	(str)"
+			],
+			[
+				"pro",
+				"proflile	(?)"
+			],
+			[
+				"url",
+				"urlObj	(?)"
+			],
+			[
+				"re",
+				"request	(?)"
+			],
+			[
+				"pr",
+				"profiles	(?)"
+			],
+			[
+				"te",
+				"binaryText"
+			],
+			[
+				"op",
+				"onmouseup	(?)"
+			],
+			[
+				"get",
+				"getWebPageTitle(url, callback)"
+			],
+			[
+				"h",
+				"https	(?)"
+			],
+			[
+				"text",
+				"textBuffer	(?)"
+			],
+			[
+				"con",
+				"console	{}"
+			],
+			[
+				"res",
+				"response (?)"
+			],
+			[
+				"log",
+				"console.log"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "var util    = require(\"util\");\nvar http = require('http');\nvar https   = require('https');\nvar urlutil = require('url');\nvar url_util = require('url');\n\nvar Iconv   = require(\"iconv\").Iconv;\nvar cheerio = require('cheerio')\nvar charsetDetector = require(\"node-icu-charset-detector\");\n\nvar profiles = require('./profiles');\n\nvar CharsetMatch    = charsetDetector.CharsetMatch;\nvar ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Chrome/33.0.1750.117 Safari/534.57.2';\n\nvar getWebPageTitle = function(url, callback) {\n  var urlElements = url_util.parse(url, false);\n  var requester = (urlElements.protocol === 'https:') ? https : http;\n\n  var options = {\n    host: urlElements.hostname,\n    port: urlElements.port,\n    path: urlElements.path,\n    headers: {'user-agent': ua }\n  };\n\n  var request = requester.get(options, function(response) {\n    var binaryText = '';\n    response.setEncoding('binary');\n\n    response.on('data', function(chunk) {\n      binaryText += chunk\n    });\n\n    response.on('end',function() {\n      var textBuffer = new Buffer(binaryText, 'binary');\n      var charsetMatch = new CharsetMatch(textBuffer);\n      var text = bufferToString(textBuffer, charsetMatch.getName());\n      //console.log(text);\n      var $ = cheerio.load(text);\n\n      //var title = $('title').text().replace(/\\n/g, '');\n      //var title = getElementById(\"empty-message-container\").innerHTML;\n      //var title = $('#empty-message-container').text().replace(/\\n/g, '');\n      //var title = $('#rhs').text().replace(/\\n/g, '');\n      //var title = $('#rhs').text();\n      \n      //店名検索\n      //var title = $('.kno-ecr-pt').text();\n      //var title = $('#rhs_block').children('.ol').children('.li').text();\n      //var title = $('#rhs_block').children('ol').children('li').children('div').children('div').children('span').text();\n      var title = $('#rhs_block').find('span').text();\n      request\n\n      //console.log(title);\n      //var rhs = $('u_account');\n      //console.log(rhs);\n      var title = (title === '') ? util.format(\"couldn't find title from %s\", url) : title;\n      //var rhs = (rhs === '') ? util.format(\"couldn't find rhs from %s\", url) : rhs;\n\n      callback(title);\n      //callback(rhs);\n    });\n  });\n  request.setTimeout(2000, function() {\n    request.abort()\n  });\n  request.on('error', function(error) {\n    callback(util.format(\"couldn't fetch web page from %s\", url));\n  });\n};\n\nvar bufferToString = function(buffer, charset) {\n  try {\n    buffer\n    return buffer.toString(charset);\n  } catch(error) {\n    charsetConverter = new Iconv(charset, \"utf8\");\n    return charsetConverter.convert(buffer).toString();\n  }\n};\n\nhttp.createServer(function (request, response) {\n	var urlObj = urlutil.parse(request.url, true);\n	var cb = urlObj.query.callback;\n	var who = urlObj.query.who;\n	console.log(who);\n	var proflile;\n	if ( cb && who ) {\n		proflile = cb + \"(\" + JSON.stringify(profiles[who]) + \")\";\n		\n		var url_val = \"https://www.google.co.jp/search?q=03-5669-4480&qscrl=1\";\n		getWebPageTitle(url_val, function(title) {\n		  console.log(title);\n		});\n\n		response.end(proflile);\n	}\n  //response.writeHead(200, {'content-Type': 'text/html'});\n  //response.end('abcd');\n  //response.text.prototype()\n  //response(toLocaleString().split(pattern));\n  //console.log(response([string]))\n}).listen(8080);\n",
+			"file": "server.js",
+			"file_size": 3358,
+			"file_write_time": 130525226598425630,
+			"settings":
+			{
+				"buffer_size": 3375,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "client.html",
+			"settings":
+			{
+				"buffer_size": 569,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "profiles.js",
+			"settings":
+			{
+				"buffer_size": 504,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "node-scraping-sample/app.js",
+			"settings":
+			{
+				"buffer_size": 2379,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 399,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "var request = require('request'),ua = 'Chrome/33.0.1750.117';\nvar cheerio = require('cheerio'); \n\n\nrequest('https://www.google.co.jp/search?q=047-437-6266&oq=047-437-6266&aqs=chrome.0.69i59j69i60l2.2939j0j7&sourceid=chrome&es_sm=91&ie=SHIFT-JIS&qscrl=1', function (error, response, html) \n{\n  if (!error && response.statusCode == 200) {\n    var $ = cheerio.load(html);\n    var parsedResults = [];\n    console.log('go');\n    console.log(html);\n    $('a').each(function(i, element){\n      console.log('in');\n      console.log($(this).text());\n      if ($(this).text() == \"住所\") {\n\n      }\n      \n      // Select the previous element\n      //var a = $(this).prev();\n      // Get the rank by parsing the element two levels above the \"a\" element\n      //var rank = a.parent().parent().text();\n      // Parse the link title\n      //var title = a.text();\n      // Parse the href attribute from the \"a\" element\n      //var url = a.attr('href');\n      // Get the subtext children from the next row in the HTML table.\n      //var subtext = a.parent().parent().next().children('.subtext').children();\n      // Extract the relevant data from the children\n      //var points = $(subtext).eq(0).text();\n      //var username = $(subtext).eq(1).text();\n      //var comments = $(subtext).eq(2).text();\n      // Our parsed meta data object\n      /*\n      var metadata = {\n        rank: parseInt(rank),\n        title: title,\n        url: url,\n        points: parseInt(points),\n        username: username,\n        comments: parseInt(comments)\n      };\n      */\n      // Push meta-data into parsedResults array\n      //parsedResults.push(metadata);\n    });\n    // Log our finished parse results in the terminal\n    //console.log(parsedResults);\n  }\n});",
+			"file": "scrape.js",
+			"file_size": 1727,
+			"file_write_time": 130523569047939780,
+			"settings":
+			{
+				"buffer_size": 1730,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/BSP/A-AUTO_EventServer/log/ARWCHSRV.log",
+			"settings":
+			{
+				"buffer_size": 10460,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "Package Control Messages\n========================\n\nPackage Control:\n---------------\n\n  Version 3.0 Release Notes\n  \n  \n  **** Windows Sublime Text 3 Users ****\n  \n  Due to a bug in Package Control 2.0, Windows ST3 users will need to open the\n  Sublime Text console (ctrl+`) and execute the following Python to properly\n  upgrade. All other users may ignore this part of the message.\n  \n  Make sure NOT to copy the leading two spaces, or an \"unexpected indent\" error\n  will occur.\n  \n  import urllib.request,os,sys; exec(\"if sys.version_info < (3,) or os.name != 'nt': raise OSError('This code is for Windows ST3 only!')\"); pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')\n  \n  ********\n  \n  \n  Package Control 3.0 adds a bunch of polish, improving the Sublime Text\n  experience for users and package developers:\n  \n   - improved upgrades of themes, color schemes and syntaxes\n   - dependency support\n   - SSL for Linux\n   - new secondary Windows HTTP backend\n   - patches for Python in Sublime Text 2 on Windows\n   - commands to easily remove channels and repositories\n   - an events API for packages\n   - improved documentation\n  \n  \n  As of July 2014, I now work for myself. This has allowed me to spend more time\n  working on open source software, including Package Control. If you appreciate\n  the work I've done, please consider a small donation. If even 5% of regular\n  users donated the price of a coffee or beer, that would cover quite a bit of\n  my development time! See https://packagecontrol.io/about for options.\n  \n  \n  Some recent Package Control stats:\n  \n   - every weekday over 1M JSON requests hit the channel server\n   - in December, the channel server will transmit 4TB+ of compressed JSON\n   - users have installed, upgraded or removed 85M+ packages since late 2011\n  \n  \n  Read more about the release at:\n  \n  https://packagecontrol.io/news#2014-12-23-Package_Control_30_Released\n  \n",
+			"settings":
+			{
+				"buffer_size": 2443,
+				"line_ending": "Windows",
+				"name": "Package Control Messages",
+				"scratch": true
+			}
+		},
+		{
+			"contents": "Searching 4071 files for \"CIP_input_get_vad_action\"\n\n0 matches across 0 files\n",
+			"settings":
+			{
+				"buffer_size": 78,
+				"line_ending": "Windows",
+				"name": "Find Results",
+				"scratch": true
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 311.0,
+		"selected_items":
+		[
+			[
+				"package",
+				"Package Control: Remove Package"
+			],
+			[
+				"ter",
+				"TernJS: Jump to definition"
+			],
+			[
+				"te",
+				"TernJS: Reload"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"ins	",
+				"Package Control: Install Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"package install",
+				"Package Control: Install Package"
+			],
+			[
+				"package in",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Add Repository"
+			],
+			[
+				"Package Control: pa",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"install package",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove pa",
+				"Package Control: Remove Package"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"nod",
+				"Nodejs::Default File Settings"
+			],
+			[
+				"node",
+				"Nodejs::User File Settings"
+			],
+			[
+				"mi",
+				"View: Toggle Minimap"
+			],
+			[
+				"mini",
+				"View: Toggle Minimap"
+			],
+			[
+				"Package Control: install	",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"TE",
+				"TernJS: Reload"
+			],
+			[
+				"Ter",
+				"TernJS: Reload"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 281.0
+	},
+	"console":
+	{
+		"height": 126.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/b1485/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/C/Users/b1485/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/hanori/Nitrous/mynode/profiles.js",
+		"/Users/hanori/Nitrous/mynode/client.html",
+		"/Users/hanori/Nitrous/mynode/node-scraping-sample/app.js",
+		"/Users/hanori/Nitrous/mynode/json_and_back.js",
+		"/Users/hanori/Nitrous/mynode/node-scraping-sample/package.json",
+		"/Users/hanori/Nitrous/mynode/profile.js",
+		"/Users/hanori/Nitrous/mynode/phantom-sample.js",
+		"/Users/hanori/Nitrous/mynode/server.js",
+		"/Users/hanori/Nitrous/mynode/tern.sublime-project",
+		"/Users/hanori/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/hanori/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/hanori/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/xmlhttprequest/tests/test-events.js",
+		"/Users/hanori/Library/Application Support/Sublime Text 3/Packages/User/JSON.sublime-settings",
+		"/Users/hanori/Library/Application Support/Sublime Text 3/Packages/User/test.html",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/request/node_modules/form-data/node_modules/combined-stream/test/integration/test-callback-streams.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/request/node_modules/form-data/node_modules/combined-stream/test/integration/test-is-stream-like.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/cssstyle/lib/properties/webkitMarginStart.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/htmlparser2/test/Events/11-script_in_script.json",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/request/index.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/cssstyle/lib/properties/pageBreakAfter.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/lib/scraper.js",
+		"/Users/hanori/Library/Application Support/Sublime Text 3/Packages/Nodejs/Nodejs.sublime-settings",
+		"/Users/hanori/Library/Application Support/Sublime Text 3/Packages/User/Nodejs.sublime-settings",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/cssstyle/lib/properties/stopColor.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/cssstyle/lib/properties/fontVariant.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/cssstyle/lib/properties/verticalAlign.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/request/node_modules/http-signature/lib/verify.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/lib/jsdom/browser/history.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/cssstyle/lib/properties/height.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/htmlparser2/node_modules/domutils/lib/helpers.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/cssstyle/lib/properties/webkitHyphenateLimitLines.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/htmlparser2/test/Events/06-leading-lt.json",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/request/CHANGELOG.md",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/request/lib/cookies.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/contextify/build/config.gypi",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/xmlhttprequest/tests/test-constants.js",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/htmlparser2/node_modules/domhandler/test/cases/21-conditional_comments.json",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/request/node_modules/form-data/node_modules/combined-stream/node_modules/delayed-stream/License",
+		"/Users/hanori/Nitrous/mynode/node_modules/scraper/node_modules/jsdom/node_modules/htmlparser2/lib/ProxyHandler.js",
+		"/Users/hanori/Nitrous/mynode/.unison/ar4d02c7f315928908b62d9d8a4da70d3f",
+		"/Users/hanori/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/hanori/projects/prototype/Pods/RATreeView/RATreeView/RATreeView+Enums.h",
+		"/Users/hanori/Library/Application Support/Sublime Text 3/Packages/CSScheme/README.md",
+		"/Users/hanori/Library/Application Support/Sublime Text 3/Packages/User/Plain text.sublime-settings",
+		"/Users/hanori/Library/Application Support/Sublime Text 3/Packages/CSScheme/Package/CSScheme.sublime-settings"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"CIP_input_get_vad_action",
+			"MakeIPCKey",
+			"block",
+			"rhs",
+			"住所",
+			"rhscol",
+			">\n",
+			"1",
+			"javascpirt"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 9,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "server.js",
+					"settings":
+					{
+						"buffer_size": 3375,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1952,
+								1952
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 347.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "client.html",
+					"settings":
+					{
+						"buffer_size": 569,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "profiles.js",
+					"settings":
+					{
+						"buffer_size": 504,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								58,
+								58
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "node-scraping-sample/app.js",
+					"settings":
+					{
+						"buffer_size": 2379,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1557,
+								1557
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "package.json",
+					"settings":
+					{
+						"buffer_size": 399,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								392,
+								392
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "scrape.js",
+					"settings":
+					{
+						"buffer_size": 1730,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								576,
+								576
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/C/BSP/A-AUTO_EventServer/log/ARWCHSRV.log",
+					"settings":
+					{
+						"buffer_size": 10460,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1351,
+								1351
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"settings":
+					{
+						"buffer_size": 2443,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2443,
+								2443
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"settings":
+					{
+						"buffer_size": 78,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								78,
+								78
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"tern-project",
+				"tern.sublime-project"
+			],
+			[
+				"scraper",
+				"node_modules/scraper/lib/scraper.js"
+			],
+			[
+				"pha",
+				"phantom-sample.js"
+			],
+			[
+				"",
+				".unison/ar4d02c7f315928908b62d9d8a4da70d3f"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/Users/hanori/Nitrous/mynode/tern.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 278.0,
+	"status_bar_visible": true
+}

@@ -1,0 +1,16 @@
+{
+  "name"         : "node-web-scrape",
+  "version"      : "0.0.1",
+  "description"  : "Scrape web.",
+  "main"         : "server.js",
+  "author"       : "hanori",
+  "dependencies" : {
+    "express"    : "latest",
+    "scraper"    : "latest",
+    "request"    : "latest",
+    "cheerio"    : "latest",
+    "node-icu-charset-detector" : "latest",
+    "protobuf" : "latest",
+    "iconv" : "latest"
+  }
+}
